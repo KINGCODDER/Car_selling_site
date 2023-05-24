@@ -4,7 +4,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 
 function Card(props) {
   return (
-    <div className="col-6">
+    <div className="col-12 col-md-6">
       <ScrollAnimation animateIn="animate__fadeIn">
         <div
           className="card"
