@@ -181,3 +181,43 @@ input#keyword {
     padding: 26px;
   }
 }
+
+.image-container img {
+  width: 100%;
+}
+
+.image-container:focus-visible {
+  outline: none;
+}
+
+.slick-slide {
+  transition: opacity 0.3s ease;
+}
+
+.slick-center {
+  opacity: 1;
+}
+
+.slick-slide:not(.slick-center) {
+  width: 50%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px;
+  line-height: 1;
+  color: #000;
+}
+
+.slick-prev:before {
+  content: '←';
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: flex-end !important;
+}
+
+.slick-next:before {
+  content: '→';
+}

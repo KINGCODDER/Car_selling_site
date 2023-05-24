@@ -3,6 +3,7 @@ import "../Styles/Home.css";
 import NavBar from "./NavBar";
 import Header from "./Header";
 import ScrollAnimation from "react-animate-on-scroll";
+import Carosoul from "./Carosoul";
 
 function Home() {
   return (
@@ -16,6 +17,8 @@ function Home() {
       </div>
 
       <Header />
+
+      <Carosoul />
     </div>
   );
 }
