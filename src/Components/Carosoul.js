@@ -12,6 +12,7 @@ import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { useInView } from "react-intersection-observer";
 import ScrollAnimation from "react-animate-on-scroll";
+import SellOutlinedIcon from "@mui/icons-material/SellOutlined";
 
 function Carosoul() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -22,7 +23,6 @@ function Carosoul() {
   });
 
   const settings = {
-    dots: true,
     infinite: true,
     slidesToShow: 1,
     speed: 500,
@@ -36,9 +36,19 @@ function Carosoul() {
         item.classList.remove("animate__animated");
         item.classList.remove("animate__fadeInDown");
       });
+      const currentBuyBox = document.querySelectorAll(`.buy-box-active`);
+      currentBuyBox.forEach((item) => {
+        // item.classList.add("animate__animated");
+        item.classList.remove("animate__fadeIn");
+      });
     },
     afterChange: (current) => {
       const currentSlide = document.querySelectorAll(`.speed-active`);
+      const currentBuyBox = document.querySelectorAll(`.buy-box-active`);
+      currentBuyBox.forEach((item) => {
+        // item.classList.add("animate__animated");
+        item.classList.add("animate__fadeIn");
+      });
       currentSlide.forEach((item) => {
         item.classList.add("animate__animated");
         item.classList.add("animate__fadeInDown");
@@ -50,13 +60,16 @@ function Carosoul() {
       {
         breakpoint: 768,
         settings: {
-          centerPadding: "10%",
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 992,
         settings: {
-          centerPadding: "5%",
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -67,6 +80,11 @@ function Carosoul() {
     currentSlide.forEach((item) => {
       item.classList.add("animate__animated");
       item.classList.add("animate__fadeInDown");
+    });
+    const currentBuyBox = document.querySelectorAll(`.buy-box-active`);
+    currentBuyBox.forEach((item) => {
+      // item.classList.add("animate__animated");
+      item.classList.add("animate__fadeIn");
     });
   }, []);
 
@@ -79,6 +97,7 @@ function Carosoul() {
       transmission: "8",
       seats: "4",
       fuel: "16",
+      price: "256",
     },
     {
       id: 2,
@@ -87,6 +106,7 @@ function Carosoul() {
       transmission: "6",
       seats: "4",
       fuel: "20",
+      price: "50",
       background:
         "linear-gradient(0deg, #9d1501, #ff6646, #ffb4a3, transparent)", // Customize the background color for slide 2
     },
@@ -97,6 +117,7 @@ function Carosoul() {
       transmission: "6",
       seats: "4",
       fuel: "15",
+      price: "400",
       background:
         "linear-gradient(0deg, #ff8e04, #ffc17a, #ffe3bd, transparent)", // Customize the background color for slide 3
     },
@@ -114,7 +135,11 @@ function Carosoul() {
       >
         <h2
           className="heading-2 font-type-1"
-          style={{ position: "absolute", top: "5%", left: "26%" }}
+          style={{
+            position: "absolute",
+            top: "5%",
+            left: "26%",
+          }}
         >
           Pick Your Dream Car Today
         </h2>
@@ -150,6 +175,11 @@ function Carosoul() {
                             padding: "8px",
                             borderRadius: "50%",
                             background: "white",
+                            "@media (max-width: 728px)": {
+                              fontSize: "40px",
+                              width: "fit-content",
+                              padding: 0,
+                            },
                           }}
                         />
                       </div>{" "}
@@ -172,6 +202,11 @@ function Carosoul() {
                             padding: "8px",
                             borderRadius: "50%",
                             background: "white",
+                            "@media (max-width: 728px)": {
+                              fontSize: "40px",
+                              width: "fit-content",
+                              padding: 0,
+                            },
                           }}
                         />
                       </div>{" "}
@@ -184,7 +219,7 @@ function Carosoul() {
                   <ScrollAnimation animateIn="animate__fadeInDown">
                     <div
                       className={`speed${
-                        activeSlide === slide.id - 1 ? "-active" : ""
+                        activeSlide === slide.id - 1 ? "-active " : ""
                       }`}
                     >
                       <div className="icons">
@@ -195,6 +230,11 @@ function Carosoul() {
                             padding: "8px",
                             borderRadius: "50%",
                             background: "white",
+                            "@media (max-width: 728px)": {
+                              fontSize: "40px",
+                              width: "fit-content",
+                              padding: 0,
+                            },
                           }}
                         />
                       </div>{" "}
@@ -217,6 +257,11 @@ function Carosoul() {
                             padding: "8px",
                             borderRadius: "50%",
                             background: "white",
+                            "@media (max-width: 728px)": {
+                              fontSize: "40px",
+                              width: "fit-content",
+                              padding: 0,
+                            },
                           }}
                         />
                       </div>{" "}
@@ -225,6 +270,37 @@ function Carosoul() {
                       </p>
                     </div>
                   </ScrollAnimation>
+                </div>
+              </div>
+
+              <div
+                className={`buy-box${
+                  activeSlide === slide.id - 1 ? "-active " : ""
+                } d-flex`}
+              >
+                <div className="price-tag d-flex ">
+                  <div className="tag">
+                    <SellOutlinedIcon
+                      sx={{
+                        fontSize: "40px",
+                        "@media (max-width: 728px)": {
+                          fontSize: "24px",
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="price">
+                    <span>${slide.price}</span>{" "}
+                    <span className="perday"> /Day</span>
+                  </div>
+                </div>
+                <div className="actions w-100">
+                  <div className="action-btn rent">
+                    <button className="rent-btn">Rent</button>
+                  </div>
+                  <div className="action-btn view Details">
+                    <button className="view-btn">View Details</button>
+                  </div>
                 </div>
               </div>
             </div>
